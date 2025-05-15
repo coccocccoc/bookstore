@@ -1,0 +1,69 @@
+package com.example.demo.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.example.demo.entity.Book;
+
+@SpringBootTest
+public class BookRepositoryTest {
+
+	@Autowired
+	BookRepository repository;
+	
+	@Test
+	public void 리파지토리확인() {
+		System.out.println("repository: " + repository);
+	}
+	
+	@Test
+	public void 도서등록() {
+		Book book1 = Book.builder()
+						.title("모순")
+						.writer("양귀자")
+						.publisher("쓰다")
+						.price(13000)
+						.category("소설")
+						.isbn("9788998441012")
+						.build();
+		repository.save(book1);
+		
+	}
+	
+	@Test
+	public void 도서목록조회() {
+		List<Book> list = repository.findAll();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void 도서단건조회() {
+		Optional<Book> optional = repository.findById(1);
+		
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			System.out.println(book);
+		}
+	}
+	
+	@Test
+	public void 도서정보수정() {
+		Optional<Book> optional = repository.findById(1);
+		
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			book.setPublisher("문학동네");
+			repository.save(book);
+		}
+	}
+	
+	@Test
+	public void 도서삭제() {
+		repository.deleteById(null);
+	}
+	
+}
