@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.book.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class BookDTO {
 
 	int bookNo; // 책 번호
 
-	String title; // 책 제목
+	String title; // 책 제목 
 	
 	String writer; // 저자
 	

@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.book.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ import lombok.ToString;
 public class Book {
 
 	// primary key
-	// auto increment
+	// auto increment 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int bookNo; // 책 번호

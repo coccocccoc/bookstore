@@ -1,9 +1,9 @@
-package com.example.demo.Service;
+package com.example.demo.book.service;
 
 import java.util.List;
 
-import com.example.demo.dto.BookDTO;
-import com.example.demo.entity.Book;
+import com.example.demo.book.dto.BookDTO;
+import com.example.demo.book.entity.Book;
 
 public interface BookService {
 	
