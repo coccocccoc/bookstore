@@ -15,6 +15,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: initial;
 }
 
 nav {
@@ -123,7 +124,7 @@ section h2 {
   font-weight: bold;
 }
 
-.book-info .price span {
+.price span {
   color: green;
 }
 

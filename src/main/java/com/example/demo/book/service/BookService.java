@@ -8,9 +8,7 @@ import com.example.demo.book.entity.Book;
 public interface BookService {
 	
 	// 도서 등록
-	// 매개변수: 새로운 도서 정보
-	// 리턴값: 새로운 도서 정보
-	BookDTO registerBook(BookDTO bookDto);
+	int registerBook(BookDTO bookDto);
 	
 	// 도서 정보 목록 조회
 	List<BookDTO> getBookList();

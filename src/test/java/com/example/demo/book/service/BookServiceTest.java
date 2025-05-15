@@ -1,0 +1,60 @@
+package com.example.demo.book.service;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.example.demo.book.dto.BookDTO;
+
+@SpringBootTest
+public class BookServiceTest {
+
+	@Autowired
+	BookService service;
+	
+	@Test
+	public void 서비스확인() {
+		System.out.println("service: " + service);
+	}
+	
+	@Test
+	public void 도서등록() {
+		BookDTO dto = BookDTO.builder()
+								.title("소년이 온다")
+								.writer("한강")
+								.publisher("창비")
+								.price(15000)
+								.category("소설")
+								.isbn("9788936434120")
+								.build();
+		int newNo = service.registerBook(dto);
+		System.out.println("등록된 도서의 번호: " + newNo);
+	}
+	
+	@Test
+	public void 도서목록조회() {
+		List<BookDTO> list = service.getBookList();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void 도서단건조회() {
+		BookDTO dto = service.findBookById(2);
+		System.out.println(dto);
+	}
+	
+	@Test
+	public void 도서정보수정() {
+		BookDTO dto = service.findBookById(2);
+		dto.setPrice(16900);
+		service.updateBook(dto);
+	}
+	
+	@Test
+	public void 도서삭제() {
+		service.deleteBook(3);
+	}
+	
+}

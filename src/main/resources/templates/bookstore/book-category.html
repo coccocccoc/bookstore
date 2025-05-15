@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>소설</title>
-  <link rel="stylesheet" href="./category.css">
+  <link rel="stylesheet" href="/css/category.css">
 </head>
 <body>
   
   <header>
     <nav>
-      <a href="./main.html">
-        <img src="./img/로고.png" alt="로고">
+      <a href="/bookstore/main">
+        <img src="/img/로고.png" alt="로고">
       </a>
       <div class="search-group">
         <input type="text" title="검색어 입력" class="search">
@@ -19,13 +19,13 @@
       </div>
       <div class="nav-group">
         <a href="">
-          <img src="./img/도서추가.png" alt="도서 추가">
+          <img src="/img/도서추가.png" alt="도서 추가">
         </a>
         <a href="">
-          <img src="./img/장바구니.png" alt="장바구니">
+          <img src="/img/장바구니.png" alt="장바구니">
         </a>
         <a href="">
-          <img src="./img/마이페이지.png" alt="마이페이지">
+          <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
     </nav>
@@ -37,17 +37,24 @@
       <section>
         <h2>소설</h2>
         <div class="book-grid">
-          <div class="book-card">
-            <a href=""><img src="./img/모순.jpg" alt="모순"></a>
-            <div class="book-info">
-              <a href="" class="underline"><strong>모순</strong></a>
-              <p class="writer">양귀자 · 쓰다</p>
-              <p class="price"><span>10%</span> 11,700원</p>
+          <div class="book-card" th:each="book : ${list}" th:inline="text">
+            <a th:href="@{/bookstore/book-detail(bookNo=${book.bookNo})}">
+              <img src="/img/파과.jpg" alt="[[${book.title}]]">
+            </a>
+            <div  class="book-info">
+              <a th:href="@{/bookstore/book-detail(bookNo=${book.bookNo})}" class="underline">
+                <strong>[[${book.title}]]</strong>
+              </a>
+              <p class="writer">[[${book.writer}]] · [[${book.publisher}]]</p>
+              <p class="price">
+                <span class="green">10%</span> 
+                [[${#numbers.formatInteger(book.price * 0.9, 3, 'COMMA')}]]원
+              </p>
             </div>
           </div>
 
-          <div class="book-card">
-            <a href=""><img src="./img/흰.jpg" alt="흰"></a>
+          <!-- <div class="book-card">
+            <a href=""><img src="/img/흰.jpg" alt="흰"></a>
             <div class="book-info">
               <a href="" class="underline"><strong>흰</strong></a>
               <p class="writer">한강 · 문학동네</p>
@@ -56,7 +63,7 @@
           </div>
 
           <div class="book-card">
-            <a href=""><img src="./img/파과.jpg" alt="파과"></a>
+            <a href=""><img src="/img/파과.jpg" alt="파과"></a>
             <div class="book-info">
               <a href="" class="underline"><strong>파과</strong></a>
               <p class="writer">구병모 · 위즈덤하우스</p>
@@ -65,7 +72,7 @@
           </div>
 
           <div class="book-card">
-            <a href=""><img src="./img/소년이 온다.jpg" alt="소년이 온다"></a>
+            <a href=""><img src="/img/소년이 온다.jpg" alt="소년이 온다"></a>
             <div class="book-info">
               <a href="" class="underline"><strong>소년이 온다</strong></a>
               <p class="writer">한강 · 창비</p>
@@ -74,7 +81,7 @@
           </div>
 
           <div class="book-card">
-            <a href=""><img src="./img/시프트.jpg" alt="시프트"></a>
+            <a href=""><img src="/img/시프트.jpg" alt="시프트"></a>
             <div class="book-info">
               <a href="" class="underline"><strong>시프트</strong></a>
               <p class="writer">조예은 · 북다</p>
@@ -83,13 +90,13 @@
           </div>
 
           <div class="book-card">
-            <a href=""><img src="./img/제16회 젊은작가상 수상작품집(2025).jpg" alt="제16회 젊은작가상 수상작품집(2025)"></a>
+            <a href=""><img src="/img/제16회 젊은작가상 수상작품집(2025).jpg" alt="제16회 젊은작가상 수상작품집(2025)"></a>
             <div class="book-info">
               <a href="" class="underline"><strong>제16회 젊은작가상 수상작품집(2025)</strong></a>
               <p class="writer">강보라 외 · 문학동네</p>
-              <p class="price"><span>10%</span>  6,930 원</p>
+              <p class="price"><span>10%</span> 6,930원</p>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </section>  

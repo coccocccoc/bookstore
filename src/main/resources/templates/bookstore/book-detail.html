@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>모순</title>
-  <link rel="stylesheet" href="./book-detail.css">
+  <link rel="stylesheet" href="/css/book-detail.css">
 </head>
 <body>
   
   <header>
     <nav>
-      <a href="./main.html">
-        <img src="./img/로고.png" alt="로고">
+      <a href="/bookstore/main">
+        <img src="/img/로고.png" alt="로고">
       </a>
       <div class="search-group">
         <input type="text" title="검색어 입력" class="search">
@@ -19,31 +19,32 @@
       </div>
       <div class="nav-group">
         <a href="">
-          <img src="./img/도서추가.png" alt="도서 추가">
+          <img src="/img/도서추가.png" alt="도서 추가">
         </a>
         <a href="">
-          <img src="./img/장바구니.png" alt="장바구니">
+          <img src="/img/장바구니.png" alt="장바구니">
         </a>
         <a href="">
-          <img src="./img/마이페이지.png" alt="마이페이지">
+          <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
     </nav>
+  </header>
 
 
     <main>
 
       <div class="container">
         <div class="cover">
-          <img src="img/모순.jpg" alt="모순">
+          <img src="/img/모순.jpg" alt="${dto.title}">
         </div>
         <div class="details">
-          <div class="title">모순</div>
-          <div class="info"><small>저자</small> 양귀자</div>
-          <div class="info"><small>출판사</small> 쓰다</div>
+          <div class="title">[[${dto.title}]]</div>
+          <div class="info"><small>저자</small> [[${dto.writer}]]</div>
+          <div class="info"><small>출판사</small> [[${dto.publisher}]]</div>
           <div class="price">
-            <div class="original">정가: 18,800원</div>
-            <div><strong>판매가: 16,920원</strong></div>
+            <div class="original">정가: [[${#numbers.formatInteger(dto.price, 3, 'COMMA')}]]원</div>
+            <div><strong>판매가: [[${#numbers.formatInteger(dto.price * 0.9, 3, 'COMMA')}]]원</strong></div>
           </div>
           <div class="buttons">
             <div class="edit-btns">
@@ -64,7 +65,7 @@
 
 
       
-  <footer class="site-footer">
+ <footer class="site-footer">
   <div class="footer-content">
     <p>&copy; 2025 도서쇼핑몰. All rights reserved.</p>
     <ul class="footer-links">
@@ -74,7 +75,7 @@
       <li><a href="#">고객센터</a></li>
     </ul>
   </div>
-</footer>
+ </footer>
 
 </body>
 </html> 
