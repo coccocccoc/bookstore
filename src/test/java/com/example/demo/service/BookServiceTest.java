@@ -1,4 +1,4 @@
-package com.example.demo.book.service;
+package com.example.demo.service;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.book.dto.BookDTO;
+import com.example.demo.book.service.BookService;
 
 @SpringBootTest
 public class BookServiceTest {
@@ -26,7 +27,7 @@ public class BookServiceTest {
 								.writer("한강")
 								.publisher("창비")
 								.price(15000)
-								.category("소설")
+								.categoryNo(1)
 								.isbn("9788936434120")
 								.build();
 		int newNo = service.registerBook(dto);

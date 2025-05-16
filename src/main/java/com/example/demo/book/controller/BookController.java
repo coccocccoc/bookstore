@@ -25,12 +25,12 @@ public class BookController {
 		// bookstore 폴더 아래 main.html 파일
 	}
 
-	// 도서 목록 화면을 반환(소설)
-	@GetMapping("/book-category")
-	public void category(Model model) {
-	    List<BookDTO> list = service.getBookList();
-	    model.addAttribute("list", list);
-	}
+	// 도서 목록 화면을 반환(카테고리 별)
+//	@GetMapping("/book-category")
+//	public void category(@RequestParam("categoryNo") int categoryNo, Model model) {
+//	    List<BookDTO> list = service.getBookList();
+//	    model.addAttribute("list", list);
+//	}
 	
 	// 도서 상세 화면을 반환
 	@GetMapping("/book-detail")

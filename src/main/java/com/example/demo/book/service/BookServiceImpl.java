@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.book.dto.BookDTO;
 import com.example.demo.book.entity.Book;
 import com.example.demo.book.repository.BookRepository;
+import com.example.demo.category.entity.Category;
+import com.example.demo.category.repository.CategoryRepository;
 
 import jakarta.persistence.Entity;
 
@@ -18,6 +20,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	BookRepository repository;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	// 도서 등록 메소드
 	// 테이블에 새로운 도서를 등록하고 등록한 도서 번호를 반환
@@ -64,8 +69,13 @@ public class BookServiceImpl implements BookService {
 			book.setWriter(bookDto.getWriter());
 			book.setPublisher(bookDto.getPublisher());
 			book.setPrice(bookDto.getPrice());
-			book.setCategory(bookDto.getCategory());
+//			book.setCategoryNo(bookDto.getCategoryNo());
 			book.setIsbn(bookDto.getIsbn());
+			
+			Category category = categoryRepository.findById(bookDto.getCategoryNo())
+												.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 분야입니다."));
+			book.setCategoryNo(category);
+					
 			repository.save(book);
 		}
 	}

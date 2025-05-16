@@ -1,4 +1,4 @@
-package com.example.demo.book.repository;
+package com.example.demo.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.book.entity.Book;
 import com.example.demo.book.repository.BookRepository;
+import com.example.demo.category.entity.Category;
 
 @SpringBootTest
 public class BookRepositoryTest {
@@ -23,13 +24,15 @@ public class BookRepositoryTest {
 	
 	@Test
 	public void 도서등록() {
+		
+		Category category = Category.builder().categoryNo(1).build();
 		Book book1 = Book.builder()
-						.title("모순")
-						.writer("양귀자")
-						.publisher("쓰다")
-						.price(13000)
-						.category("소설")
-						.isbn("9788998441012")
+						.title("시프트")
+						.writer("조예은")
+						.publisher("북다")
+						.price(16800)
+						.categoryNo(category)
+						.isbn("9791170612322")
 						.build();
 		repository.save(book1);
 		

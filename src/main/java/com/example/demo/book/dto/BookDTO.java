@@ -25,7 +25,7 @@ public class BookDTO {
 	
 	int price; // 가격
 	
-	String category; // 카테고리
+	int categoryNo; // 카테고리
 	
 	String isbn; // 국제표준도서번호
 	
