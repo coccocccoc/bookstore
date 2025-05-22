@@ -72,6 +72,12 @@ public class BookServiceImpl implements BookService {
 			book.setPublisher(bookDto.getPublisher());
 			book.setPrice(bookDto.getPrice());
 			book.setCategory(bookDto.getCategory());
+			
+			// 이미지 파일명이 존재할 때만 수정
+			// 존재하지 않으면 기존 이미지 유지
+			if (bookDto.getImgFileName() != null && !bookDto.getImgFileName().isEmpty()) {
+				book.setImgFilename(bookDto.getImgFileName());
+			}
 
 			repository.save(book);
 		}

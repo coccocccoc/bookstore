@@ -151,6 +151,7 @@ main h3 {
   background-color: #eee;
   border: 1px solid #ccc;
   width: 100px;
+  border-radius: 5px;
 }
 
 .delete-btn {
@@ -158,6 +159,7 @@ main h3 {
   color: white;
   border: none;
   width: 100px;
+  border-radius: 5px;
 }
 
 .add-btn{

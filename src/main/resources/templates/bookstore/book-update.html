@@ -32,7 +32,7 @@
 
     <main>
       <h3>수정</h3>
-      <form class="container" method="post" action="/bookstore/book-update">
+      <form class="container" method="post" action="/bookstore/book-update" enctype="multipart/form-data">
         <div class="cover">
           <input type="file" name="uploadFile">
         </div>
@@ -47,7 +47,7 @@
           </div>
           <div class="buttons">
             <div class="edit-btns">
-              <button id="modifyBtn" class="modify-btn" type="button">수정</button>
+              <button id="modifyBtn" class="modify-btn" type="submit">수정</button>
               <button id="deleteBtn" class="delete-btn" type="button">삭제</button>
             </div>
            </div>

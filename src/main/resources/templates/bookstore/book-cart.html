@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니</title>
+  <link rel="stylesheet" href="/css/book-cart.css">
+</head>
+<body>
+  
+  <header>
+    <nav>
+      <a href="/bookstore/main">
+        <img src="/img/로고.png" alt="로고">
+      </a>
+      <div class="search-group">	
+        <input type="text" title="검색어 입력" class="search">
+        <button class="search-btn">검색</button>
+      </div>
+      <div class="nav-group">
+        <a href="/bookstore/book-add">
+          <img src="/img/도서추가.png" alt="도서 추가">
+        </a>
+        <a href="">
+          <img src="/img/장바구니.png" alt="장바구니">
+        </a>
+        <a href="">
+          <img src="/img/마이페이지.png" alt="마이페이지">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+    <main>
+      <h3>장바구니 (개수)</h3>
+      <form class="container" >
+          <table>
+            <thead>
+              <tr>
+                <th>상품 정보</th>
+                <th>수량</th>
+                <th>가격</th>
+                <th>합계</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 샘플 항목 -->
+              <tr>
+                <td>
+                  <div class="cart-item">
+                    <img src="/img/과속 노화의 종말.jpg" alt="" class="cart-img">
+                    <span class="cart-title">제16회 젊은작가상 수상작품집(2025)</span>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" value="1" min="1" class="quantity">
+                </td>
+                <td><span class="price">12,000</span>원</td>
+                <td><span class="item-total">12,000</span>원(수량*가격)</td>
+                <td><button class="delete">삭제</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cart-item">
+                    <img src="/img/마음의 기술.jpg" alt="" class="cart-img">
+                    <span class="cart-title">예제 도서 2</span>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" value="1" min="1" class="quantity">
+                </td>
+                <td><span class="price">15,000</span>원</td>
+                <td><span class="item-total">15,000</span>원(수량*가격)</td>
+                <td><button class="delete">삭제</button></td>
+              </tr>
+            </tbody>
+          </table>
+        
+          <div class="totalprice">
+            <strong>총 합계: <span class="cart-total">27,000</span>원</strong>
+            <br><br>
+            <button class="order">주문하기</button>
+          </div>
+      </form>
+    </main>
+      
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 도서쇼핑몰. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">회사소개</a></li>
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보처리방침</a></li>
+        <li><a href="#">고객센터</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+
+
+</html> 
