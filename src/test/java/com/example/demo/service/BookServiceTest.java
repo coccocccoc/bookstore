@@ -23,12 +23,11 @@ public class BookServiceTest {
 	@Test
 	public void 도서등록() {
 		BookDTO dto = BookDTO.builder()
-								.title("소년이 온다")
-								.writer("한강")
-								.publisher("창비")
+								.title("건강22")
+								.writer("ww")
+								.publisher("pp")
 								.price(15000)
-								.categoryNo(1)
-								.isbn("9788936434120")
+								.category("건강")
 								.build();
 		int newNo = service.registerBook(dto);
 		System.out.println("등록된 도서의 번호: " + newNo);

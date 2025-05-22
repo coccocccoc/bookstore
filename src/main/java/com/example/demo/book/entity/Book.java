@@ -1,13 +1,10 @@
 package com.example.demo.book.entity;
 
-import com.example.demo.category.entity.Category;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,14 +41,9 @@ public class Book {
 	@Column(nullable = false)
 	int price; // 가격
 	
-//	@Column(length = 20, nullable = false)
-//	String category; 
-	
-    @ManyToOne
-    Category categoryNo; // 도서 분야 번호
-	
 	@Column(length = 20, nullable = false)
-	String isbn; // 국제 표준 도서 번호
+	String category; // 카테고리
 	
+	String imgFilename; // 이미지파일 이름
 	
 }

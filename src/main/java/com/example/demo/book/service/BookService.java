@@ -2,9 +2,9 @@ package com.example.demo.book.service;
 
 import java.util.List;
 
+
 import com.example.demo.book.dto.BookDTO;
 import com.example.demo.book.entity.Book;
-import com.example.demo.category.entity.Category;
 
 public interface BookService {
 	
@@ -25,17 +25,14 @@ public interface BookService {
 	
 	// DTO를 Entity로 바꾸는 메소드
 	default Book toBookEntity(BookDTO dto) {
-		
-		Category category = Category.builder().categoryNo(dto.getCategoryNo()).build();
-		
+				
 		Book book = Book.builder()
 							.bookNo(dto.getBookNo())
 							.title(dto.getTitle())
 							.writer(dto.getWriter())
 							.publisher(dto.getPublisher())
 							.price(dto.getPrice())
-							.categoryNo(category)
-							.isbn(dto.getIsbn())
+							.category(dto.getCategory())
 							.build();
 		return book;
 	}
@@ -48,8 +45,8 @@ public interface BookService {
 								.writer(entity.getWriter())
 								.publisher(entity.getPublisher())
 								.price(entity.getPrice())
-								.categoryNo(entity.getCategoryNo().getCategoryNo())
-								.isbn(entity.getIsbn())
+								.category(entity.getCategory())
+								.imgFileName(entity.getImgFilename())
 								.build();
 		return dto;
 	}

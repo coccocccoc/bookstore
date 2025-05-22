@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>등록</title>
+  <link rel="stylesheet" href="/css/book-update.css">
+</head>
+<body>
+  
+  <header>
+    <nav>
+      <a href="/bookstore/main">
+        <img src="/img/로고.png" alt="로고">
+      </a>
+      <div class="search-group">
+        <input type="text" title="검색어 입력" class="search">
+        <button class="search-btn">검색</button>
+      </div>
+      <div class="nav-group">
+        <a href="/bookstore/book-add">
+          <img src="/img/도서추가.png" alt="도서 추가">
+        </a>
+        <a href="">
+          <img src="/img/장바구니.png" alt="장바구니">
+        </a>
+        <a href="">
+          <img src="/img/마이페이지.png" alt="마이페이지">
+        </a>
+      </div>
+    </nav>
+
+    <main>
+      <h3>등록</h3>
+      <form class="container" method="post" action="/bookstore/book-add" enctype="multipart/form-data">
+        <div class="cover">
+          <input type="file" name="uploadFile">
+        </div>
+        <div class="details">
+          <div class="title"><input type="text" name="title"></div>
+          <div class="info"><small>저자</small> <input type="text" name="writer"></div>
+          <div class="info"><small>출판사</small> <input type="text" name="publisher"></div>
+          <div class="info"><small>카테고리</small> <input type="text" name="category"></div>
+          <div class="price">
+            <div class="original">정가: <input type="number" class="op" name="price">원</div>
+          </div>
+          <div class="buttons">
+            <div class="edit-btns">
+              <button id="addBtn" class="add-btn">등록</button>
+            </div>
+           </div>
+          </div>
+        </form>
+    </main>
+      
+ <footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 도서쇼핑몰. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">회사소개</a></li>
+      <li><a href="#">이용약관</a></li>
+      <li><a href="#">개인정보처리방침</a></li>
+      <li><a href="#">고객센터</a></li>
+    </ul>
+  </div>
+ </footer>
+ 
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const addBtn = document.getElementById("addBtn");
+
+    const categoryList = ["소설", "시/에세이", "인문", "가정/육아", "요리", "건강"];
+
+    addBtn.addEventListener("click", function (event) {
+    	
+      event.preventDefault();
+    	
+      const title = form.querySelector('input[name="title"]').value.trim();
+      const writer = form.querySelector('input[name="writer"]').value.trim();
+      const publisher = form.querySelector('input[name="publisher"]').value.trim();
+      const category = form.querySelector('input[name="category"]').value.trim();
+      const price = form.querySelector('input[name="price"]').value.trim();
+
+      if (!title || !writer || !publisher || !category || !price) {
+        alert("모든 항목을 입력해주세요.");
+        return;
+      }
+
+      if (!categoryList.includes(category)) {
+        alert("존재하지 않는 카테고리입니다.");
+        return;
+      }
+
+      form.submit();
+    });
+  });
+</script>
+
+</html> 

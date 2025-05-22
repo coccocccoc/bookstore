@@ -1,5 +1,7 @@
 package com.example.demo.book.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,8 +27,11 @@ public class BookDTO {
 	
 	int price; // 가격
 	
-	int categoryNo; // 카테고리
+	String category; // 카테고리
 	
-	String isbn; // 국제표준도서번호
+	// 사용자가 업로드한 파일을 담는 객체
+	MultipartFile uploadFile; 
 	
+	String imgFileName; // 파일 이름
+		
 }

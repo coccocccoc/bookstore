@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>모순</title>
+  <title>[[${dto.title}]]</title>
   <link rel="stylesheet" href="/css/book-detail.css">
 </head>
 <body>
@@ -18,13 +18,13 @@
         <button class="search-btn">검색</button>
       </div>
       <div class="nav-group">
-        <a href="">
+        <a href="/bookstore/book-add">
           <img src="/img/도서추가.png" alt="도서 추가">
         </a>
         <a href="">
           <img src="/img/장바구니.png" alt="장바구니">
         </a>
-        <a href="">
+        <a href="">	
           <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
@@ -36,7 +36,7 @@
 
       <div class="container">
         <div class="cover">
-          <img src="/img/모순.jpg" alt="${dto.title}">
+          <img th:src="@{ '/upload/' + ${dto.imgFileName} }" alt="">
         </div>
         <div class="details">
           <div class="title">[[${dto.title}]]</div>
@@ -45,11 +45,12 @@
           <div class="price">
             <div class="original">정가: [[${#numbers.formatInteger(dto.price, 3, 'COMMA')}]]원</div>
             <div><strong>판매가: [[${#numbers.formatInteger(dto.price * 0.9, 3, 'COMMA')}]]원</strong></div>
-          </div>
+          </div>	
           <div class="buttons">
             <div class="edit-btns">
-              <button class="modify-btn">수정</button>
-              <button class="delete-btn">삭제</button>
+              <a th:href="@{/bookstore/book-update(bookNo = ${dto.bookNo})}">
+              	<button class="modify-btn">수정</button>
+              </a>
             </div>
             <div class="shop-btns">
               <button class="cart-btn">장바구니</button>

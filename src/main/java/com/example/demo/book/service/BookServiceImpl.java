@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.book.dto.BookDTO;
 import com.example.demo.book.entity.Book;
 import com.example.demo.book.repository.BookRepository;
-import com.example.demo.category.entity.Category;
-import com.example.demo.category.repository.CategoryRepository;
+import com.example.demo.book.util.FileUtil;
 
-import jakarta.persistence.Entity;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -22,13 +20,17 @@ public class BookServiceImpl implements BookService {
 	BookRepository repository;
 	
 	@Autowired
-	CategoryRepository categoryRepository;
+	FileUtil util;
 
 	// 도서 등록 메소드
 	// 테이블에 새로운 도서를 등록하고 등록한 도서 번호를 반환
 	@Override
 	public int registerBook(BookDTO bookDto) {
 		Book entity = toBookEntity(bookDto);
+		
+		String filename = util.fileUpload(bookDto.getUploadFile());
+		entity.setImgFilename(filename);
+		
 		repository.save(entity);
 		int newNo = entity.getBookNo();
 		
@@ -69,13 +71,8 @@ public class BookServiceImpl implements BookService {
 			book.setWriter(bookDto.getWriter());
 			book.setPublisher(bookDto.getPublisher());
 			book.setPrice(bookDto.getPrice());
-//			book.setCategoryNo(bookDto.getCategoryNo());
-			book.setIsbn(bookDto.getIsbn());
-			
-			Category category = categoryRepository.findById(bookDto.getCategoryNo())
-												.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 분야입니다."));
-			book.setCategoryNo(category);
-					
+			book.setCategory(bookDto.getCategory());
+
 			repository.save(book);
 		}
 	}

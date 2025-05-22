@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>소설</title>
+  <title>[[${categoryName}]]</title>
   <link rel="stylesheet" href="/css/category.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <button class="search-btn">검색</button>
       </div>
       <div class="nav-group">
-        <a href="">
+        <a href="/bookstore/book-add">
           <img src="/img/도서추가.png" alt="도서 추가">
         </a>
         <a href="">
@@ -35,13 +35,13 @@
 
     <main>
       <section>
-        <h2>소설</h2>
+        <h2 th:text="${categoryName}">카테고리명</h2>
         <div class="book-grid">
           <div class="book-card" th:each="book : ${list}" th:inline="text">
             <a th:href="@{/bookstore/book-detail(bookNo=${book.bookNo})}">
-              <img src="/img/파과.jpg" alt="[[${book.title}]]">
+              <img th:src="@{ '/upload/' + ${book.imgFileName} }" alt="">
             </a>
-            <div  class="book-info">
+            <div class="book-info">
               <a th:href="@{/bookstore/book-detail(bookNo=${book.bookNo})}" class="underline">
                 <strong>[[${book.title}]]</strong>
               </a>
