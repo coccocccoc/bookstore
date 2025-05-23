@@ -111,10 +111,7 @@ public class BookController {
 		return "redirect:/bookstore/book-category";
 	}
 	
-	// 장바구니 화면 반환
-	@GetMapping("book-cart")
-	public void cart() {
-	}
+
 	
 	
 }

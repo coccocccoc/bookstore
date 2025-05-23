@@ -31,17 +31,13 @@ public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int cartNo;
+	int cartNo; // 장바구니 번호
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "book_no", nullable = false)
-	Book book;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_no", nullable = false)
-	Member member;
+	Book book; // 도서
 	
 	@Column(nullable = false)
-	int quantity;
+	int quantity; // 수량
 	
 }
