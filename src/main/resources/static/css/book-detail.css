@@ -162,6 +162,29 @@ nav {
   margin-bottom: 10px;
 }
 
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shop-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.button-group {
+  display: flex;
+}
+
 
 
 .site-footer {

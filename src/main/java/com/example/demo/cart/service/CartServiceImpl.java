@@ -3,7 +3,6 @@ package com.example.demo.cart.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import com.example.demo.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,6 @@ import com.example.demo.cart.repository.CartRepository;
 
 @Service
 public class CartServiceImpl implements CartService {
-
-    private final MemberRepository memberRepository;
 	
 	@Autowired
 	CartRepository cartRepository;
@@ -23,9 +20,6 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	BookRepository bookRepository;
 
-    CartServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 	
 	// 장바구니 추가 메소드
 	@Override

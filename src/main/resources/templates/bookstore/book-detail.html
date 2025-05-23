@@ -53,10 +53,24 @@
               </a>
             </div>
             <div class="shop-btns">
-              <button class="cart-btn">장바구니</button>
-              <button class="buy-btn">바로구매</button>
-            </div>
-            
+		      <!-- 수량 입력창 -->
+		      <input type="number" name="quantity" min="1" class="quantity-input" required>
+		
+			  <!-- 버튼 두 개 -->
+			  <div class="button-group">
+			    <form th:action="@{/bookstore/book-detail/add}" method="post" >
+			      <input type="hidden" name="bookNo" th:value="${dto.bookNo}" />
+			      <input type="hidden" name="quantity" />
+			      <button type="submit" class="cart-btn">장바구니</button>
+			    </form>
+			
+			    <form action="" method="post">
+			      <input type="hidden" name="bookNo" th:value="${dto.bookNo}" />
+			      <input type="hidden" name="quantity" />
+			      <button type="submit" class="buy-btn">바로구매</button>
+			    </form>
+			  </div>
+			</div>
           </div>
         </div>
       </div>
