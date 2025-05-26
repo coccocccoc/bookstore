@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.book.entity.Book;
 import com.example.demo.book.repository.BookRepository;
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.entity.Cart;
@@ -24,12 +25,32 @@ public class CartServiceImpl implements CartService {
 	// 장바구니 추가 메소드
 	@Override
 	public void addToCart(CartDTO cartDto) {
-		Cart cart = Cart.builder()
-                .book(cartDto.getBook())
-                .quantity(cartDto.getQuantity())
-                .build();
+		
+		if (cartDto.getBook() == null || cartDto.getBook().getBookNo() == 0) {
+	        throw new IllegalArgumentException("도서 정보가 누락되었습니다.");
+	    }
+		
+		int bookNo = cartDto.getBook().getBookNo();
+		
+		Book book = bookRepository.findById(bookNo)
+                .orElseThrow(() -> new IllegalArgumentException("해당 도서를 찾을 수 없습니다: " + bookNo));
 
-        cartRepository.save(cart);
+	    // 동일한 도서가 이미 장바구니에 있는지 확인	
+	    Optional<Cart> optional = cartRepository.findByBookBookNo(bookNo);
+
+	    if (optional.isPresent()) {
+	        // 장바구니에 이미 존재할 경우 수량 증가
+	        Cart cart = optional.get();
+	        cart.setQuantity(cart.getQuantity() + cartDto.getQuantity());
+	        cartRepository.save(cart);
+	    } else {
+	        // 장바구니에 없으면 새로 추가
+	        Cart newCart = Cart.builder()
+	                .book(book)
+	                .quantity(cartDto.getQuantity())
+	                .build();
+	        cartRepository.save(newCart);
+	    }
 	}
 
 	// 장바구니 목록 조회 메소드

@@ -1,6 +1,7 @@
 package com.example.demo.cart.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.entity.Cart;
@@ -9,6 +10,7 @@ public interface CartService {
 	
 	// 장바구니에 도서 추가
 	void addToCart(CartDTO cartDto);
+	
 	
 	// 장바구니 목록 조회
 	List<CartDTO> getCartList();

@@ -28,7 +28,21 @@
           <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
-    </nav>
+    </nav> 
+    
+    <ul class="category">
+	  <li><button class="menu-btn"><img src="/img/메뉴.png" alt="메뉴"></button></li>
+	  <li><a href="">베스트</a></li>
+	
+	  <!-- 카테고리 목록 반복 -->
+	  <li th:each="cat : ${categoryList}">
+	    <a th:href="@{/bookstore/book-category(category=${cat})}" th:text="${cat}"></a>
+	  </li>
+	</ul>
+	
+	<div class="divider"></div>
+	
+  </header>
 
     <main>
       <h3>수정</h3>

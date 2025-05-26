@@ -21,6 +21,11 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
+	 @ModelAttribute("categoryList")
+	 public List<String> getCategoryList() {
+	   return List.of("소설", "시/에세이", "인문", "가정/육아", "요리", "건강");
+	 }
+	
 	// 장바구니에 도서 추가
 	@PostMapping("/book-detail/add")
 	public String addCart(@ModelAttribute CartDTO dto) {

@@ -29,11 +29,24 @@
         </a>
       </div>
     </nav>
+  
+	<ul class="category">
+	  <li><button class="menu-btn"><img src="/img/메뉴.png" alt="메뉴"></button></li>
+	  <li><a href="">베스트</a></li>
+	
+	  <!-- 카테고리 목록 반복 -->
+	  <li th:each="cat : ${categoryList}">
+	    <a th:href="@{/bookstore/book-category(category=${cat})}" th:text="${cat}"></a>
+	  </li>
+	</ul>
+	
+	<div class="divider"></div>
+	
   </header>
 
     <main>
-      <h3>장바구니 <small>([[${totalQuantity}]]권)</small></h3>
-      <form class="container" >
+      <h3>장바구니</h3>
+      <div class="container" >
           <table>
             <thead>
               <tr>
@@ -48,8 +61,12 @@
           <tr th:each="cart : ${cartList}">
             <td>
               <div class="cart-item">
-                <img th:src="@{'/upload/' + ${cart.book.imgFilename}}" alt="" class="cart-img">
-                <span class="cart-title">[[${cart.book.title}]]</span>
+                <a th:href="@{/bookstore/book-detail(bookNo=${cart.book.bookNo})}">
+                  <img th:src="@{'/upload/' + ${cart.book.imgFilename}}" alt="" class="cart-img">
+                </a>
+                <a th:href="@{/bookstore/book-detail(bookNo=${cart.book.bookNo})}">
+                  <span class="cart-title">[[${cart.book.title}]]</span>
+                </a>
               </div>
             </td>
             <td>
@@ -65,7 +82,8 @@
               <span class="item-total">[[${#numbers.formatInteger((cart.book.price * 0.9) * cart.quantity, 3, 'COMMA')}]]</span>원
             </td>
             <td>
-              <form th:action="@{/bookstore/book-cart/delete}" method="post" enctype="multipart/form-data">
+              <form th:action="@{/bookstore/book-cart/delete}" method="post" enctype="multipart/form-data"
+              onsubmit="return confirm('삭제하시겠습니까?');">
                 <input type="hidden" name="cartNo" th:value="${cart.cartNo}" />
                 <button type="submit" class="delete">삭제</button>
               </form>
@@ -74,8 +92,9 @@
         </tbody>
       </table>
         
-          <div class="totalprice">
+      <div class="totalprice">
         <strong>
+         <small>([[${totalQuantity}]]권)</small>
           총 합계:
           <span class="cart-total">
             [[${#numbers.formatInteger(totalPrice, 3, 'COMMA')}]]
@@ -100,6 +119,5 @@
   </footer>
 
 </body>
-
 
 </html> 

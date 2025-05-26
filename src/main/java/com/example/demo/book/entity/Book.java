@@ -40,7 +40,7 @@ public class Book {
 	
 	@Column(nullable = false)
 	int price; // 가격
-	
+		
 	@Column(length = 20, nullable = false)
 	String category; // 카테고리
 	

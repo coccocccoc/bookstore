@@ -15,13 +15,12 @@ ul {
 
 a {
   text-decoration: none;
-  color: initial;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  gap: 90px;
+  gap: 80px;
   padding-top: 50px;
   padding-bottom: 30px;
   padding-left: 20px;
@@ -65,6 +64,58 @@ nav {
 
 .nav-group a {
   margin-left: 10px;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.underline:hover {
+  text-decoration: underline;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+  gap: 95px;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.category li {
+  font-size: larger;
+}
+
+.category a {
+  color: black;
+}
+
+.category a:hover {
+  color: #ababab;
+}
+
+.menu-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.main-banner {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 50px;
+}
+
+.divider {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background-color: rgb(225, 225, 225);
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 

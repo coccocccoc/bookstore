@@ -66,8 +66,6 @@ nav {
   margin-left: 10px;
 }
 
-
-
 a:visited {
   color: inherit;
 }
@@ -107,6 +105,17 @@ a:visited {
   justify-content: center;
   padding: 20px 0;
   margin-bottom: 50px;
+}
+
+.divider {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background-color: rgb(225, 225, 225);
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .book-section h2, 

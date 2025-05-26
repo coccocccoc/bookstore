@@ -29,13 +29,16 @@ public class BookController {
 	@Autowired
 	FileUtil fileUtil;
 	
-	// 메인 화면을 반환
-	@GetMapping("/main")
-	public String main(Model model) {
-	    List<String> categoryList = List.of("소설", "시/에세이", "인문", "가정/육아", "요리", "건강");
-	    model.addAttribute("categoryList", categoryList);
+	 @ModelAttribute("categoryList")
+	 public List<String> getCategoryList() {
+	   return List.of("소설", "시/에세이", "인문", "가정/육아", "요리", "건강");
+	 }
+	 
+	 // 메인화면 반환
+	 @GetMapping("/main")
+	 public String main() {
 	    return "bookstore/main";
-	}
+	 }
 
 	// 도서 목록 화면을 반환
 	@GetMapping("/book-category")
