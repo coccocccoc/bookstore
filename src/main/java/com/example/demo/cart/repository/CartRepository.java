@@ -13,6 +13,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 	Optional<Cart> findByMemberMemberNoAndBookBookNo(int memberNo, int bookNo);
 	
 	// 특정 회원의 장바구니 전체 조회
-	Optional<Cart> findByMemberMemberNo(int memberNo);
+	List<Cart> findByMemberMemberNo(int memberNo);
 		
 }
