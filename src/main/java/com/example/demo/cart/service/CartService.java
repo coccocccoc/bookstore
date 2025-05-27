@@ -11,7 +11,6 @@ public interface CartService {
 	// 장바구니에 도서 추가
 	void addToCart(CartDTO cartDto);
 	
-	
 	// 장바구니 목록 조회
 	List<CartDTO> getCartList();
 	
@@ -26,6 +25,7 @@ public interface CartService {
 		Cart cart = Cart.builder()
 						.cartNo(dto.getCartNo())
 						.book(dto.getBook())
+						.member(dto.getMember())
 						.quantity(dto.getQuantity())
 						.build();
 		return cart;
@@ -36,6 +36,7 @@ public interface CartService {
 		CartDTO dto = CartDTO.builder()
 							 .cartNo(entity.getCartNo())
 							 .book(entity.getBook())
+							 .member(entity.getMember())
 							 .quantity(entity.getQuantity())
 							 .build();
 		return dto;

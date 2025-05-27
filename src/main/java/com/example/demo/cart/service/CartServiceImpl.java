@@ -11,6 +11,8 @@ import com.example.demo.book.repository.BookRepository;
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.entity.Cart;
 import com.example.demo.cart.repository.CartRepository;
+import com.example.demo.member.entity.Member;
+import com.example.demo.member.repository.MemberRepository;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -21,6 +23,8 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	BookRepository bookRepository;
 
+	@Autowired
+	MemberRepository memberRepository;
 	
 	// 장바구니 추가 메소드
 	@Override
@@ -34,9 +38,13 @@ public class CartServiceImpl implements CartService {
 		
 		Book book = bookRepository.findById(bookNo)
                 .orElseThrow(() -> new IllegalArgumentException("해당 도서를 찾을 수 없습니다: " + bookNo));
+		
+		// 회원 (memberNo = 1)
+		Member member = memberRepository.findById(1)
+				.orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
 
 	    // 동일한 도서가 이미 장바구니에 있는지 확인	
-	    Optional<Cart> optional = cartRepository.findByBookBookNo(bookNo);
+	    Optional<Cart> optional = cartRepository.findByMemberMemberNoAndBookBookNo(member.getMemberNo(), bookNo);
 
 	    if (optional.isPresent()) {
 	        // 장바구니에 이미 존재할 경우 수량 증가
@@ -47,6 +55,7 @@ public class CartServiceImpl implements CartService {
 	        // 장바구니에 없으면 새로 추가
 	        Cart newCart = Cart.builder()
 	                .book(book)
+	                .member(member)
 	                .quantity(cartDto.getQuantity())
 	                .build();
 	        cartRepository.save(newCart);
@@ -56,12 +65,14 @@ public class CartServiceImpl implements CartService {
 	// 장바구니 목록 조회 메소드
 	@Override
 	public List<CartDTO> getCartList() {
-		List<Cart> list = cartRepository.findAll();
-	    List<CartDTO> dtoList = null;
-	    dtoList = list.stream()
-	                  .map(entity -> toCartDTO(entity))
-	                  .collect(Collectors.toList());
-	    return dtoList;
+		
+		Member member = memberRepository.findById(1)
+	            .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
+		
+		List<Cart> list = cartRepository.findByMemberMemberNo(member.getMemberNo());
+		return list.stream()
+	               .map(this::toCartDTO)
+	               .collect(Collectors.toList());
 	}
 
 	// 수량 수정 메소드

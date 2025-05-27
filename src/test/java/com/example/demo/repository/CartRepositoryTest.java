@@ -11,6 +11,8 @@ import com.example.demo.book.entity.Book;
 import com.example.demo.book.repository.BookRepository;
 import com.example.demo.cart.entity.Cart;
 import com.example.demo.cart.repository.CartRepository;
+import com.example.demo.member.entity.Member;
+import com.example.demo.member.repository.MemberRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -23,6 +25,9 @@ public class CartRepositoryTest {
 	@Autowired
 	BookRepository bookRepository;
 	
+	@Autowired
+	MemberRepository memberRepository;
+	
 	@Test
 	public void 리파지토리확인() {
 		System.out.println("repository: " + cartRepository);
@@ -32,9 +37,11 @@ public class CartRepositoryTest {
 	public void 장바구니추가() {
 		
 		Optional<Book> optionalBook = bookRepository.findById(24);
+		Optional<Member> optionalMember = memberRepository.findById(1);
 			
 		Cart cart = Cart.builder()
 						.book(optionalBook.get())
+						.member(optionalMember.get())
 						.quantity(1)
 						.build();
 		cartRepository.save(cart);

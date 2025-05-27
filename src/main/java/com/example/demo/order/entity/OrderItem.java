@@ -1,9 +1,7 @@
-package com.example.demo.cart.entity;
+package com.example.demo.order.entity;
 
-import com.example.demo.book.entity.Book;
-import com.example.demo.member.entity.Member;
+import com.example.demo.cart.entity.Cart;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,28 +18,26 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tbl_cart")
+@Table(name = "tbl_order_item")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Builder
-public class Cart {
-
+public class OrderItem {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int cartNo; // 장바구니 번호
+	int orderItemNo; // 주문 상세 번호
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "book_no", nullable = false)
-	Book book; // 도서
-		
+	@JoinColumn(name = "order_no", nullable = false)
+	Order order; // 주문
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_no", nullable = false)
-	Member member; // 회원
+    @JoinColumn(name = "cart_no", nullable = false)
+	Cart cart; // 장바구니
 	
-	@Column(nullable = false)
-	int quantity; // 수량
-	
+
 }

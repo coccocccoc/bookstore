@@ -160,7 +160,9 @@ th {
 .product-container,
 .payment-container {
   border: 1px solid rgb(220, 220, 220);
-  padding: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
   border-radius: 10px;
   max-width: 900px;
   margin: 40px auto;
@@ -176,10 +178,15 @@ thead {
   border-bottom: 1px solid rgb(225, 225, 225);
 }
 
+
+
 .product-table thead th {
   padding: 15px;
-  font-size: 16px;
   text-align: left;
+}
+
+.prd {
+  font-size: 18px;
 }
 
 .product-table tbody tr {
@@ -237,21 +244,22 @@ tbody tr td:nth-child(2) span {
 .payment-table thead th {
   text-align: left;
   font-size: 18px;
-  padding-bottom: 15px;
+  padding: 15px;
 }
 .payment-table tbody td {
-  padding: 15px;
+  padding: 20px;
   text-align: center;
   border-top: 1px solid #e0e0e0;
 }
 .payment-table div {
   margin-bottom: 5px;
+  height: 26px;
 }
-.payment-table span {
-  font-weight: bold;
+.payment-table td div {
+  white-space: nowrap;
 }
 .agree-section {
-  max-width: 900px;
+  max-width: 400px;
   margin: 0 auto 50px;
   display: flex;
   flex-direction: column;

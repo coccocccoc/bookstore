@@ -229,6 +229,9 @@ input[type=number]::-webkit-outer-spin-button {
 .update:hover {
   background-color: #eeeeee;
 }
+.empty {
+  text-align: center;
+}
 
 
 

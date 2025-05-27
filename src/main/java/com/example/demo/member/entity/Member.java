@@ -40,7 +40,7 @@ public class Member {
 
 	@Column(length = 255)
 	String address; // 주소
-	
+		
 	@Column(length = 20)
 	String phoneNumber; // 전화번호
 	

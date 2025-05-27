@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>장바구니</title>
-  <link rel="stylesheet" href="./book-order.css">
+  <title>주문</title>
+  <link rel="stylesheet" href="/css/book-order.css">
 </head>
 <body>
   
@@ -44,11 +44,7 @@
 	
   </header>
 
-
-
-
   <main>
-
     <section>
       <div class="order-container">
         <div class="order-info">
@@ -58,9 +54,6 @@
               <td>
                 <div>
                   <input type="text" placeholder="이름" class="order-input">
-                </div>
-                <div>
-                  <input type="text" placeholder="이메일" class="order-input">
                 </div>
                 <div>
                   <input type="text" placeholder="전화번호" class="order-input">
@@ -83,20 +76,19 @@
       </div>
     </section>
 
-
     <section>
       <div class="product-container">
         <table class="product-table">
           <thead>
             <tr>
-              <th>주문상품</th>
+              <th class="prd">주문상품</th>
               <th>총 <span>0</span>개</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <img src="./img/청춘의 독서.jpg" alt="청춘의 독서" class="product-img">
+                <img src="/img/청춘의 독서.jpg" alt="청춘의 독서" class="product-img">
               </td>
               <td>
                 <span class="title">[국내도서]청춘의 독서(특별증보판)</span>
@@ -106,7 +98,7 @@
             </tr>
             <tr>
               <td>
-                <img src="./img/내 사람을 생각한다.jpg" alt="우리의 낙원에서 만나자" class="product-img">
+                <img src="/img/내 사람을 생각한다.jpg" alt="우리의 낙원에서 만나자" class="product-img">
               </td>
               <td>
                 <span class="title">[국내도서]우리의 낙원에서 만나자</span>
@@ -131,15 +123,15 @@
             <tr>
               <td>
                 <div>상품 금액</div>
-                <div><span>34,560</span>원</div>
+                <div><strong>34,560</strong>원</div>
               </td>
               <td>
                 <div>배송비</div>
-                <div><span>2,500</span>원</div>
+                <div><strong>2,500</strong>원</div>
               </td>
               <td>
                 <div>최종 결제 금액</div>
-                <div><span>37,060</span>원</div>
+                <div><strong>37,060</strong>원</div>
               </td>
             </tr>
           </tbody>
@@ -161,13 +153,8 @@
         <label for="privacyAgree">개인정보 수집 및 이용동의</label>
       </div>
     </div>
-
+    
   </main>
-
-
-
-
-
 
 
   <footer class="site-footer">

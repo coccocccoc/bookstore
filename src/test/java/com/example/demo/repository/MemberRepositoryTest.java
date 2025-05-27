@@ -50,7 +50,7 @@ public class MemberRepositoryTest {
 								.address("대구광역시 수성구")
 								.phoneNumber("010-3333-4444")
 								.role("user")
-								.build();
+								.build();	
 		repository.save(member3);
 	}
 	
