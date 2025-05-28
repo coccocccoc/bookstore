@@ -46,7 +46,7 @@ public class Order {
 	int orderNo; // 주문번호
 	
 	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-	List<OrderItem> orderItems = new ArrayList<>(); // 주문상세
+	List<OrderItem> orderItems = new ArrayList<>(); // 주문 상세 리스트
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_no", nullable = false)

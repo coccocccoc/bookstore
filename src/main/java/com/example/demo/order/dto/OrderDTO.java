@@ -1,0 +1,33 @@
+package com.example.demo.order.dto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.example.demo.member.entity.Member;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
+public class OrderDTO {
+
+	int orderNo; // 주문번호
+	
+	List<OrderItemDTO> orderItems; // 주문 상세 리스트
+	
+	Member member; // 주문자
+	
+	LocalDateTime orderDate; // 주문일시
+	
+	int totalPrice; // 총 주문 금액
+	
+}
