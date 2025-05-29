@@ -41,7 +41,7 @@ public class CartServiceImpl implements CartService {
 		
 		// 회원 (memberNo = 1)
 		Member member = memberRepository.findById(1)
-				.orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
+										.orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
 
 	    // 동일한 도서가 이미 장바구니에 있는지 확인	
 	    Optional<Cart> optional = cartRepository.findByMemberMemberNoAndBookBookNo(member.getMemberNo(), bookNo);

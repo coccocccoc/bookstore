@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 950px;
+    margin: 0;
+  }
+
+  .login-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+  }
+
+  .login-container h2 {
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  .login-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+  }
+
+  .login-container input[type="text"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+
+  .login-container button {
+    margin-top: 10px;
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    padding: 12px 0;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .login-btn {
+    background-color: #007BFF;
+    color: white;
+  }
+
+  .login-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .signup-btn {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  .signup-btn:hover {
+    background-color: #495057;
+  }

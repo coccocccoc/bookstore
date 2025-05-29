@@ -76,7 +76,7 @@ public class MemberRepositoryTest {
 		
 		if(optional.isPresent()) {
 			Member member = optional.get();
-			member.setPhoneNumber("010-9999-0000");
+			member.setAddress("인천 남동구 문화로 161, 대우재한신휴플러스아파트 103동 1014호");
 			repository.save(member);
 		}
 	}
