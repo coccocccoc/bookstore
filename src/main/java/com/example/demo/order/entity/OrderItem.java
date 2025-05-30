@@ -1,5 +1,6 @@
 package com.example.demo.order.entity;
 
+import com.example.demo.book.entity.Book;
 import com.example.demo.cart.entity.Cart;
 
 import jakarta.persistence.Entity;
@@ -31,13 +32,12 @@ public class OrderItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int orderItemNo; // 주문 상세 번호
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "order_no", nullable = false)
 	Order order; // 주문
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_no", nullable = false)
-	Cart cart; // 장바구니
+	Book book; // 도서
 	
+	int quantity; // 수량
 
 }

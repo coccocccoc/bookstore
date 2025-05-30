@@ -48,7 +48,8 @@ public class Order {
 	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
 	List<OrderItem> orderItems = new ArrayList<>(); // 주문 상세 리스트
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "member_no", nullable = false)
 	Member member; // 주문자
 	
@@ -58,5 +59,6 @@ public class Order {
 	
 	@Column(nullable = false)
 	int totalPrice; // 총 주문 금액
+
 
 }

@@ -3,9 +3,13 @@ package com.example.demo.order.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.book.repository.BookRepository;
 import com.example.demo.cart.entity.Cart;
@@ -36,77 +40,57 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	OrderItemRepository orderItemRepository;
-	
 
-	/* Order */
-	// 주문 생성 메소드
+
+	// 장바구니로부터 주문 저장
 	@Override
-	public OrderDTO createOrder(OrderDTO orderDTO) {
-		
-		// 회원 (memberNo = 1)
-		int memberNo = 1;
-		Member member = memberRepository.findById(memberNo)
-										.orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
-		
-		LocalDateTime orderDate = LocalDateTime.now();
-		
-		// 주문 객체 생성
-		Order order = Order.builder()
-							.member(member)
-							.orderDate(orderDate)
-							.totalPrice(0)
-							.build();
-		orderRepository.save(order);
-		
-		// 장바구니 조회
-		List<Cart> cartList = cartRepository.findByMemberMemberNo(memberNo);
-		if(cartList.isEmpty()) {
-			throw new RuntimeException("장바구니가 비어있습니다");
-		}
-		
-		// 주문 상세 생성, totalPrice 계산
-		List<OrderItem> orderItemList = new ArrayList<>();
-		
-		int totalPrice = 0;
-		
-		for (Cart cart : cartList) {
-	        OrderItem orderItem = OrderItem.builder()
-							                .order(order)
-							                .cart(cart)
-							                .build();
-	        orderItemList.add(orderItem);
+    public void saveOrderFromCart(int memberNo) {
+        Member member = memberRepository.findById(memberNo).orElseThrow();
+        List<Cart> cartList = cartRepository.findByMemberMemberNo(memberNo);
 
-	        totalPrice = totalPrice + cart.getBook().getPrice() * cart.getQuantity();
-	    }
-		orderItemRepository.saveAll(orderItemList);
-		
-		// totalPrice 반영
-		order.setTotalPrice(totalPrice);
-		
-		orderRepository.save(order); 
-		
-		// 장바구니 비우기
-		cartRepository.deleteAll(cartList);
-		
-		return null;
-	}
-	
-	// 장바구니 비우기..?
-	
+        int totalPrice = calculateTotalPrice(cartList);
 
-	// 회원 번호로 주문 목록 조회 메소드
-	@Override
-	public List<OrderDTO> getOrdersByMemberNo(int memberNo) {
-		return null;
-	}
+        Order order = Order.builder()
+                .member(member)
+                .totalPrice(totalPrice)
+                .build();
+
+        List<OrderItem> orderItems = new ArrayList<>();
+        for (Cart cart : cartList) {
+            OrderItem item = OrderItem.builder()
+                    .order(order)
+//                    .bookNo(cart.getBook().getBookNo())
+                    .quantity(cart.getQuantity())
+                    .build();
+            orderItems.add(item);
+        }
+        order.setOrderItems(orderItems);
+
+        orderRepository.save(order); // cascade로 OrderItem 자동 저장
+
+//        cartRepository.deleteAll(cartList); // 장바구니 비우기
+        
+        cartRepository.deleteByMember(member);
+    }
+
+    // totalPrice 계산
+    @Override
+    public int calculateTotalPrice(List<Cart> cartList) {
+        int totalPrice = 0;
+        for (Cart cart : cartList) {
+            int price = (int) (cart.getBook().getPrice() * 0.9);
+            totalPrice = totalPrice + price * cart.getQuantity();
+        }
+        return totalPrice;
+    }
 
 	
-	
-	/* OrderItem */
 	// 특정 주문에 속한 모든 주문 상세 조회 메소드
 	@Override
 	public List<OrderItemDTO> getOrderItemsByOrderNo(int orderNo) {
 		return null;
 	}
+	
+
 
 }

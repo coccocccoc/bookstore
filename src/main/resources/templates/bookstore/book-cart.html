@@ -105,7 +105,9 @@
           </span>원
         </strong>
         <br><br>
-        <a href="/bookstore/book-order"><button class="order">주문하기</button></a>
+        <form method="post" action="/bookstore/book-order">
+		  <button class="order" id="orderBtn">주문하기</button>
+		</form>
       </div>
     </div>
   </main>
@@ -123,5 +125,21 @@
   </footer>
 
 </body>
+
+   <script th:inline="javascript">
+     document.addEventListener('DOMContentLoaded', function () {
+       const cartListIsEmpty = /*[[${#lists.isEmpty(cartList)}]]*/ false;
+       
+       if (cartListIsEmpty) {
+         const orderLink = document.getElementById('orderLink');
+         const orderBtn = document.getElementById('orderBtn');
+   
+         orderBtn.addEventListener('click', function (event) {
+           event.preventDefault();
+           alert('주문할 상품이 없습니다');
+         });
+       }
+     });
+   </script>
 
 </html> 

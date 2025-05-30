@@ -20,14 +20,18 @@ import lombok.ToString;
 @Builder
 public class OrderDTO {
 
-	int orderNo; // 주문번호
+//	int orderNo; // 주문번호
 	
 	List<OrderItemDTO> orderItems; // 주문 상세 리스트
 	
-	Member member; // 주문자
+	String name; // 주문자 이름
 	
-	LocalDateTime orderDate; // 주문일시
+	String address; // 주소
 	
-	int totalPrice; // 총 주문 금액
+	String phoneNumber; // 전화번호
+		
+//	LocalDateTime orderDate; // 주문일시
+	
+	int totalPrice; // 총 상품 금액
 	
 }
