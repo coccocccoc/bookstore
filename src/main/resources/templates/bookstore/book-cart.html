@@ -24,7 +24,7 @@
         <a href="/bookstore/book-cart">
           <img src="/img/장바구니.png" alt="장바구니">
         </a>
-        <a href="">
+        <a href="/bookstore/my">
           <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
@@ -105,9 +105,9 @@
           </span>원
         </strong>
         <br><br>
-        <form method="post" action="/bookstore/book-order">
+        <a href="/bookstore/book-order">
 		  <button class="order" id="orderBtn">주문하기</button>
-		</form>
+		</a>
       </div>
     </div>
   </main>
@@ -129,7 +129,14 @@
    <script th:inline="javascript">
      document.addEventListener('DOMContentLoaded', function () {
        const cartListIsEmpty = /*[[${#lists.isEmpty(cartList)}]]*/ false;
+       	
+       // 주문 성공 시
+       const urlParams = new URLSearchParams(window.location.search);
+	   if (urlParams.get('orderSuccess') === 'true') {
+	      alert('주문이 완료되었습니다');
+	   }
        
+       // 장바구니가 비어있을 때
        if (cartListIsEmpty) {
          const orderLink = document.getElementById('orderLink');
          const orderBtn = document.getElementById('orderBtn');

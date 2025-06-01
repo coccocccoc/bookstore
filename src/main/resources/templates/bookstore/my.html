@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>마이페이지</title>
-  <link rel="stylesheet" href="./my.css">
+  <link rel="stylesheet" href="/css/my.css">
 </head>
 <body>
   
@@ -24,7 +24,7 @@
         <a href="/bookstore/book-cart">
           <img src="/img/장바구니.png" alt="장바구니">
         </a>
-        <a href="">
+        <a href="/bookstore/my">
           <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
       </div>
@@ -55,19 +55,19 @@
         <div class="info-box">
           <div class="info-row">
             <span class="info-label">아이디</span>
-            <span class="info-value" th:text="${member.id}">abc123</span>
+            <span class="info-value" th:text="${member.id}"></span>
           </div>
           <div class="info-row">
             <span class="info-label">이름</span>
-            <span class="info-value" th:text="${member.name}">둘리</span>
+            <span class="info-value" th:text="${member.name}"></span>
           </div>
           <div class="info-row">
             <span class="info-label">전화번호</span>
-            <span class="info-value" th:text="${member.phone}">010-1111-1111</span>
+            <span class="info-value" th:text="${member.phoneNumber}"></span>
           </div>
           <div class="info-row">
             <span class="info-label">주소</span>
-            <span class="info-value" th:text="${member.address}">인천 남동구 문화로 161, 대우재한신휴플러스아파트 103동 1014호</span>
+            <span class="info-value" th:text="${member.address}"></span>
           </div>
         </div>
       </section>
@@ -84,23 +84,23 @@
       <section class="order-history-container">
         <h2>주문 내역</h2>
       
-        <!-- 주문 1건 -->
-        <div class="order-row">
-          <img src="/img/청춘의 독서.jpg" alt="청춘의 독서" class="order-thumb">
+        <div th:each="order : ${orderList}" class="order-row">
+          <img th:src="@{'/upload/' + ${order.orderItems[0].book.imgFilename}}" alt="" class="order-thumb">
           <div class="order-details">
-            <div class="order-summary">
-              <span class="order-date">2025.05.10 14:35 주문</span>
-              <span class="book-title">청춘의 독서 (특별판)</span>
-              <span class="order-etc">외 3권</span>
+            <div class="order-summary"> 
+              <span class="order-date">[[${#temporals.format(order.orderDate, 'yyyy.MM.dd HH:mm')}]] 주문</span>
+              <span class="book-title">[[${order.orderItems[0].book.title}]]</span>
+              <span class="order-etc"th:if="${#lists.size(order.orderItems) > 1}" 
+              th:text="'외 ' + (${#lists.size(order.orderItems)} - 1) + '권'"></span>
             </div>
             <div class="order-sub">
-              <span class="price">53,850원</span>
-            </div>
+              <span class="price">[[${#numbers.formatInteger(order.totalPrice, 3, 'COMMA')}]]원</span>
+			  <a th:href="@{'/bookstore/order-detail'(orderNo=${order.orderNo})}">상세보기</a>
+			</div>
           </div>
         </div>
       
-        <!-- 주문 2건 -->
-        <div class="order-row">
+<!--         <div class="order-row">
           <img src="/img/내 사람을 생각한다.jpg" alt="내 사람을 생각한다" class="order-thumb">
           <div class="order-details">
             <div class="order-summary">
@@ -112,13 +112,11 @@
               <span class="price">31,000원</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </section>
   
 
-  
-    </section>
-  </main>
+    </main>
 
 
 

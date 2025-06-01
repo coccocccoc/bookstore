@@ -21,6 +21,7 @@ import com.example.demo.member.entity.Member;
 import com.example.demo.member.repository.MemberRepository;
 import com.example.demo.order.dto.OrderDTO;
 import com.example.demo.order.dto.OrderItemDTO;
+import com.example.demo.order.entity.Order;
 import com.example.demo.order.service.OrderService;
 
 @Controller
@@ -45,10 +46,12 @@ public class OrderController {
 	@GetMapping("/book-order")
 	public String orderPage(Model model) {
 	    int memberNo = 1;
+	    
 	    List<Cart> cartList = cartRepository.findByMemberMemberNo(memberNo);
-
-	    // 장바구니 목록 전달
 	    model.addAttribute("cartList", cartList);
+	    
+	    Member member = memberRepository.findById(memberNo).orElseThrow();
+	    model.addAttribute("member", member);
 
 	    // 총 합계 계산
 	    int totalPrice = 0;
@@ -64,24 +67,44 @@ public class OrderController {
 	        totalQuantity = totalQuantity + cart.getQuantity();
 	    }
 	    model.addAttribute("totalQuantity", totalQuantity);
+	    
 
-	    return "bookstore/book-order";
+	    return "/book-order";
 	}
 
 	
-	@PostMapping("/book-order")
-	public String placeOrder(RedirectAttributes redirectAttributes) {
-	    int memberNo = 1;
-	    orderService.saveOrderFromCart(memberNo);
-	    redirectAttributes.addFlashAttribute("msg", "주문이 완료되었습니다.");
-	    return "redirect:/bookstore/main";
-	}
-	
+    @PostMapping("/book-order/submit")
+    public String submitOrder() {
+
+    	int memberNo = 1;
+
+        orderService.saveOrderFromCart(memberNo);
+
+        return "redirect:/book-cart?orderSuccess=true";
+    }
 	
 	// 마이페이지 반환
-	@GetMapping("/my")
-	public String mypage() {
-		return "bookstore/my";
-	}
+    @GetMapping("/my")
+    public String myPage(Model model) {
+        int memberNo = 1;
+        Member member = memberRepository.findById(memberNo).orElseThrow();
+ 
+        List<Order> orderList = orderService.findOrdersByMemberNo(memberNo);
+
+        model.addAttribute("member", member);
+        model.addAttribute("orderList", orderList);
+
+        return "/my";
+    }
+    
+    @GetMapping("/order-detail")
+    public String orderDetail(@RequestParam("orderNo") int orderNo, Model model) {
+        Order order = orderService.findOrderByOrderNo(orderNo)
+                                  .orElseThrow(() -> new RuntimeException("주문을 찾을 수 없습니다."));
+        model.addAttribute("order", order);
+        return "/order-detail";
+    }
+
+
 
 }

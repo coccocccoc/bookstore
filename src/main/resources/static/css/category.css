@@ -122,8 +122,12 @@ a:visited {
 
 
 
-a:visited {
-  color: inherit;
+
+a.underline:link,
+a.underline:visited,
+a.underline:hover,
+a.underline:active {
+  color: black;
 }
 
 .underline:hover {

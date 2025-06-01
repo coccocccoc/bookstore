@@ -37,12 +37,12 @@ public class BookController {
 	 // 메인화면 반환
 	 @GetMapping("/main")
 	 public String main() {
-	    return "bookstore/main";
+	    return "/main";
 	 }
 
 	// 도서 목록 화면을 반환
 	@GetMapping("/book-category")
-	public void category(@RequestParam("category") String category, Model model) {
+	public String category(@RequestParam("category") String category, Model model) {
 	    List<BookDTO> filteredList = service.getBookList()
 	        .stream()
 	        .filter(book -> category.equals(book.getCategory()))
@@ -53,20 +53,24 @@ public class BookController {
 	    model.addAttribute("list", filteredList);
 	    model.addAttribute("categoryList", categoryList);
 	    model.addAttribute("categoryName", category);
+	    
+		return "book-category";
 	}
 	
 	// 도서 상세 화면을 반환
 	@GetMapping("/book-detail")
-	public void detail(@RequestParam("bookNo") int bookNo, Model model) {
+	public String detail(@RequestParam("bookNo") int bookNo, Model model) {
 		BookDTO dto = service.findBookById(bookNo);
 		model.addAttribute("dto", dto);
+		return "book-detail";
 	}
 	
 	// 수정 화면을 반환
 	@GetMapping("/book-update")
-	public void update(@RequestParam("bookNo") int bookNo, Model model) {
+	public String update(@RequestParam("bookNo") int bookNo, Model model) {
 		BookDTO dto = service.findBookById(bookNo);
 		model.addAttribute("dto", dto);
+	    return "book-update";
 	}
 	
 	// 수정처리
@@ -89,7 +93,7 @@ public class BookController {
 			
 		service.updateBook(dto);
 		redirectAttributes.addAttribute("bookNo", dto.getBookNo());
-		return "redirect:/bookstore/book-detail";
+		return "redirect:/book-detail";
 	}
 	
 	// 삭제처리
@@ -98,12 +102,13 @@ public class BookController {
 	    String deletedCategory = service.findBookById(bookNo).getCategory(); // 삭제 전 카테고리 기억
 	    service.deleteBook(bookNo);
 	    redirectAttributes.addAttribute("category", deletedCategory); // 목록 복귀 시 다시 필터링
-	    return "redirect:/bookstore/book-category";
+	    return "redirect:/book-category";
 	}
 	
 	// 등록 화면을 반환
 	@GetMapping("/book-add")
-	public void add() {
+	public String add() {
+		return "book-add";
 	}
 	
 	// 등록처리
@@ -112,7 +117,7 @@ public class BookController {
 		int newNo = service.registerBook(dto);
 		redirectAttributes.addFlashAttribute("newNo", newNo);
 		redirectAttributes.addAttribute("category", dto.getCategory());
-		return "redirect:/bookstore/book-category";
+		return "redirect:/book-category";
 	}
 	
 

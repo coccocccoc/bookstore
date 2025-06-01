@@ -36,6 +36,8 @@ public class OrderItem {
 	@JoinColumn(name = "order_no", nullable = false)
 	Order order; // 주문
 	
+	@ManyToOne
+	@JoinColumn(name = "book_no", nullable = false)
 	Book book; // 도서
 	
 	int quantity; // 수량

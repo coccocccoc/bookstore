@@ -185,6 +185,7 @@ a:visited {
   padding: 15px 0;
   margin: 0 15px;
   border-top: 1px solid #e7e7e7;
+  
 }
 
 .order-thumb {
@@ -233,6 +234,78 @@ a:visited {
   font-size: 16px;
   
 }
+
+
+.order-row {
+  display: flex;
+  align-items: stretch;
+  gap: 15px;
+  padding: 20px 0;
+  margin: 0 15px;
+  border-top: 1px solid #e7e7e7;
+  min-height: 100px;
+}
+
+.order-thumb {
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.order-details {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.order-date,
+.order-etc {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.book-title {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.order-sub {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 아래 정렬 */
+  align-items: flex-end;
+  font-size: 13px;
+  color: #888;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.order-detail-link {
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+  margin-top: 3px;
+}
+
+.order-detail-link:hover {
+  text-decoration: underline;
+}
+
+
+
 
 
 

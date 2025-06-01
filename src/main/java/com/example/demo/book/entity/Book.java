@@ -53,8 +53,5 @@ public class Book {
 	
 	String imgFilename; // 이미지파일 이름
 	
-	// Book 삭제 시 관련 Cart도 삭제
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Cart> carts = new ArrayList<>();
 	
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -59,17 +60,17 @@ public class OrderServiceImpl implements OrderService{
         for (Cart cart : cartList) {
             OrderItem item = OrderItem.builder()
                     .order(order)
-//                    .bookNo(cart.getBook().getBookNo())
+                    .book(cart.getBook())
+//                  .bookNo(cart.getBook().getBookNo())
                     .quantity(cart.getQuantity())
                     .build();
             orderItems.add(item);
         }
         order.setOrderItems(orderItems);
 
-        orderRepository.save(order); // cascade로 OrderItem 자동 저장
-
-//        cartRepository.deleteAll(cartList); // 장바구니 비우기
+        orderRepository.save(order);
         
+        // 장바구니 삭제
         cartRepository.deleteByMember(member);
     }
 
@@ -83,13 +84,19 @@ public class OrderServiceImpl implements OrderService{
         }
         return totalPrice;
     }
+    
+    // 주문 조회
+    @Override
+    public List<Order> findOrdersByMemberNo(int memberNo) {
+        return orderRepository.findByMemberMemberNoOrderByOrderDateDesc(memberNo);
+    }
 
 	
-	// 특정 주문에 속한 모든 주문 상세 조회 메소드
-	@Override
-	public List<OrderItemDTO> getOrderItemsByOrderNo(int orderNo) {
-		return null;
-	}
+	// 특정 주문 조회 메소드
+    @Override
+    public Optional<Order> findOrderByOrderNo(int orderNo) {
+        return orderRepository.findById(orderNo);
+    }
 	
 
 

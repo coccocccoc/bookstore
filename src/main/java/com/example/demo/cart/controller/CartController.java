@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.service.CartService;
@@ -28,9 +29,10 @@ public class CartController {
 	
 	// 장바구니에 도서 추가
 	@PostMapping("/book-detail/add")
+	@ResponseBody
 	public String addCart(@ModelAttribute CartDTO dto) {
 		cartService.addToCart(dto);
-	    return "redirect:/bookstore/book-cart";
+	    return "success";
 	}
 	
 	// 장바구니 화면 반환 (목록 조회, 총 합계 계산, 총 수량 계산)
@@ -54,7 +56,7 @@ public class CartController {
 		}
 	    model.addAttribute("totalQuantity", totalQuantity);
 
-	    return "bookstore/book-cart";
+	    return "book-cart";
 	}
 		
 	
@@ -63,16 +65,16 @@ public class CartController {
 	public String updateQuantity(@RequestParam("cartNo")int cartNo,
 								 @RequestParam("quantity") int quantity) {
 		cartService.updateQuantity(cartNo, quantity);
-		return "redirect:/bookstore/book-cart";
+		return "redirect:/book-cart";
 		
 	}
 	
 	
 	// 항목 삭제처리
-	@PostMapping("/book-cart/delete")
+	@PostMapping("/bookstore/book-cart/delete")
 	public String deleteCart(@RequestParam("cartNo")int cartNo) {
 		cartService.deleteCart(cartNo);
-		return "redirect:/bookstore/book-cart";
+	    return "redirect:/bookstore/book-cart";
 	}
 	
 }

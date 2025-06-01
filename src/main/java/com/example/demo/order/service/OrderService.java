@@ -1,6 +1,7 @@
 package com.example.demo.order.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.example.demo.cart.entity.Cart;
@@ -13,16 +14,18 @@ import com.example.demo.order.entity.OrderItem;
 public interface OrderService {
 
 	/* Order */
-   
-    // 회원 번호로 주문 목록 조회
-//    List<OrderDTO> getOrdersByMemberNo(int memberNo);
-    
+       
     // 주문 저장
-	void saveOrderFromCart(int memberNo);
-	
+	void saveOrderFromCart(int memberNo);	
 	
     // totalPrice 계산
     int calculateTotalPrice(List<Cart> cartList);
+    
+    // 주문 조회
+    List<Order> findOrdersByMemberNo(int memberNo);
+    
+    // 특
+    Optional<Order> findOrderByOrderNo(int orderNo);
     
 
     // DTO -> Entity
@@ -60,8 +63,6 @@ public interface OrderService {
     
 	
 	/* OrderItem */	
-    // 특정 주문에 속한 모든 주문 상세 조회
-    List<OrderItemDTO> getOrderItemsByOrderNo(int orderNo);
     
     // DTO -> Entity
     default OrderItem toOrderItemEntity(OrderItemDTO dto) {

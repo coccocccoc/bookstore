@@ -30,7 +30,6 @@ public class BookServiceTest {
 								.category("건강")
 								.build();
 		int newNo = service.registerBook(dto);
-		System.out.println("등록된 도서의 번호: " + newNo);
 	}
 	
 	@Test
