@@ -45,7 +45,9 @@ public class OrderServiceImpl implements OrderService{
 
 	// 장바구니로부터 주문 저장
 	@Override
-    public void saveOrderFromCart(int memberNo) {
+    public void saveOrderFromCart() {
+		
+		int memberNo = 1;
         Member member = memberRepository.findById(memberNo).orElseThrow();
         List<Cart> cartList = cartRepository.findByMemberMemberNo(memberNo);
 

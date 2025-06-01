@@ -16,7 +16,7 @@ public interface OrderService {
 	/* Order */
        
     // 주문 저장
-	void saveOrderFromCart(int memberNo);	
+	void saveOrderFromCart();	
 	
     // totalPrice 계산
     int calculateTotalPrice(List<Cart> cartList);

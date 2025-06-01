@@ -48,7 +48,8 @@
 
 
   <main>
-   <form id="orderForm" action="/bookstore/book-order/submit" method="post">
+   <form id="orderForm" th:action="@{/bookstore/book-order/submit}" method="post">
+      
     <section>
       <div class="order-container">
         <div class="order-info">

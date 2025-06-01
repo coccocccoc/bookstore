@@ -17,7 +17,7 @@ public class MemberDTO {
 
 	int memberNo; // 회원 번호
 	
-	String id; // 아이디
+	String username; // 아이디
 	
 	String password; // 비밀번호
 	

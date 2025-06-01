@@ -1,6 +1,8 @@
 package com.example.demo.order.controller;
 
 import java.util.ArrayList;
+
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.entity.Cart;
@@ -69,24 +72,22 @@ public class OrderController {
 	    model.addAttribute("totalQuantity", totalQuantity);
 	    
 
-	    return "/book-order";
+	    return "/bookstore/book-order";
 	}
 
 	
-    @PostMapping("/book-order/submit")
-    public String submitOrder() {
-
-    	int memberNo = 1;
-
-        orderService.saveOrderFromCart(memberNo);
-
-        return "redirect:/book-cart?orderSuccess=true";
-    }
+	@PostMapping("/book-order/submit")
+	public String submitOrder() {
+	    orderService.saveOrderFromCart();
+	    return "redirect:/bookstore/book-cart?orderSuccess=true"; 
+	}
 	
+	   
+	   
 	// 마이페이지 반환
     @GetMapping("/my")
     public String myPage(Model model) {
-        int memberNo = 1;
+    	int memberNo = 1;
         Member member = memberRepository.findById(memberNo).orElseThrow();
  
         List<Order> orderList = orderService.findOrdersByMemberNo(memberNo);
@@ -94,7 +95,7 @@ public class OrderController {
         model.addAttribute("member", member);
         model.addAttribute("orderList", orderList);
 
-        return "/my";
+        return "/bookstore/my";
     }
     
     @GetMapping("/order-detail")
@@ -102,7 +103,7 @@ public class OrderController {
         Order order = orderService.findOrderByOrderNo(orderNo)
                                   .orElseThrow(() -> new RuntimeException("주문을 찾을 수 없습니다."));
         model.addAttribute("order", order);
-        return "/order-detail";
+        return "/bookstore/order-detail";
     }
 
 

@@ -2,12 +2,10 @@ package com.example.demo.member.service;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 
-public interface MemberService extends UserDetailsService{
+public interface MemberService{
 	
 	// 회원 등록
 	void register(MemberDTO memberDTO);
@@ -17,7 +15,7 @@ public interface MemberService extends UserDetailsService{
 	default Member toMemberEntity(MemberDTO dto) {
 		Member member = Member.builder()
 								.memberNo(dto.getMemberNo())
-								.id(dto.getId())
+								.username(dto.getUsername())
 								.password(dto.getPassword())
 								.name(dto.getName())
 								.address(dto.getAddress())
@@ -31,7 +29,7 @@ public interface MemberService extends UserDetailsService{
 	default MemberDTO toMemberDTO(Member entity) {
 		MemberDTO dto = MemberDTO.builder()
 									.memberNo(entity.getMemberNo())
-									.id(entity.getId())
+									.username(entity.getUsername())
 									.password(entity.getPassword())
 									.name(entity.getName())
 									.address(entity.getAddress())

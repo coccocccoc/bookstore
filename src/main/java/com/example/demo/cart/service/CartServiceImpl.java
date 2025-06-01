@@ -95,5 +95,15 @@ public class CartServiceImpl implements CartService {
 		}
 		
 	}
+	
+	// memberNo로 장바구니 조회
+	@Override
+	public List<CartDTO> getCartListByMember(int memberNo) {
+		 return cartRepository.findByMemberMemberNo(1)
+                 .stream()
+                 .map(this::toCartDTO)
+                 .collect(Collectors.toList());
+	}
+
 
 }

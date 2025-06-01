@@ -24,9 +24,15 @@
         <a href="/bookstore/book-cart">
           <img src="/img/장바구니.png" alt="장바구니">
         </a>
-        <a href="/bookstore/my">	
+        <a href="/bookstore/my">
           <img src="/img/마이페이지.png" alt="마이페이지">
         </a>
+      </div>
+    </nav> 
+
+
+
+        
       </div>
     </nav>
   
@@ -72,14 +78,9 @@
 			    <form action="/bookstore/book-detail/add" method="post" id="cartForm">
 			      <input type="number" name="quantity" class="quantity" min="1" value="1">
 			      <input type="hidden" name="book.bookNo" th:value="${dto.bookNo}" />
-			      <button type="button" class="cart-btn" onclick="handleCart()">장바구니</button>
+				  <button type="button" class="cart-btn" onclick="handleCart()">장바구니</button>
 			    </form>
 			
-			    <form action="" method="post">
-			      <input type="hidden" name="bookNo" th:value="${dto.bookNo}" />
-			      <input type="hidden" name="quantity" />
-			      <button type="submit" class="buy-btn">바로구매</button>
-			    </form>
 			  </div>
 			</div>
           </div>
@@ -134,6 +135,7 @@ function handleCart() {
 	}
 
 </script>
+
 
 </html>
 

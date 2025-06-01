@@ -24,7 +24,7 @@ public class MemberRepositoryTest {
 	@Test
 	public void 회원등록() {
 		Member member1 = Member.builder()
-								.id("abc123")
+								.username("abc123")
 								.password("1234")
 								.name("둘리")
 								.address("인천광역시 부평구 갈산동")
@@ -34,7 +34,7 @@ public class MemberRepositoryTest {
 		repository.save(member1);
 		
 		Member member2 = Member.builder()
-								.id("admin1")
+								.username("admin1")
 								.password("1234")
 								.name("짱구")
 								.address(null)
@@ -44,7 +44,7 @@ public class MemberRepositoryTest {
 		repository.save(member2);
 		
 		Member member3 = Member.builder()
-								.id("aa0000")
+								.username("aa0000")
 								.password("1234")
 								.name("유리")
 								.address("대구광역시 수성구")

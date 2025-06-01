@@ -37,7 +37,7 @@ public class BookController {
 	 // 메인화면 반환
 	 @GetMapping("/main")
 	 public String main() {
-	    return "/main";
+	    return "/bookstore/main";
 	 }
 
 	// 도서 목록 화면을 반환
@@ -54,7 +54,7 @@ public class BookController {
 	    model.addAttribute("categoryList", categoryList);
 	    model.addAttribute("categoryName", category);
 	    
-		return "book-category";
+		return "/bookstore/book-category";
 	}
 	
 	// 도서 상세 화면을 반환
@@ -62,7 +62,7 @@ public class BookController {
 	public String detail(@RequestParam("bookNo") int bookNo, Model model) {
 		BookDTO dto = service.findBookById(bookNo);
 		model.addAttribute("dto", dto);
-		return "book-detail";
+		return "/bookstore/book-detail";
 	}
 	
 	// 수정 화면을 반환
@@ -70,7 +70,7 @@ public class BookController {
 	public String update(@RequestParam("bookNo") int bookNo, Model model) {
 		BookDTO dto = service.findBookById(bookNo);
 		model.addAttribute("dto", dto);
-	    return "book-update";
+	    return "/bookstore/book-update";
 	}
 	
 	// 수정처리
@@ -93,7 +93,7 @@ public class BookController {
 			
 		service.updateBook(dto);
 		redirectAttributes.addAttribute("bookNo", dto.getBookNo());
-		return "redirect:/book-detail";
+		return "redirect:/bookstore/book-detail";
 	}
 	
 	// 삭제처리
@@ -102,13 +102,13 @@ public class BookController {
 	    String deletedCategory = service.findBookById(bookNo).getCategory(); // 삭제 전 카테고리 기억
 	    service.deleteBook(bookNo);
 	    redirectAttributes.addAttribute("category", deletedCategory); // 목록 복귀 시 다시 필터링
-	    return "redirect:/book-category";
+	    return "redirect:/bookstore/book-category";
 	}
 	
 	// 등록 화면을 반환
 	@GetMapping("/book-add")
 	public String add() {
-		return "book-add";
+		return "/bookstore/book-add";
 	}
 	
 	// 등록처리
@@ -117,7 +117,7 @@ public class BookController {
 		int newNo = service.registerBook(dto);
 		redirectAttributes.addFlashAttribute("newNo", newNo);
 		redirectAttributes.addAttribute("category", dto.getCategory());
-		return "redirect:/book-category";
+		return "redirect:/bookstore/book-category";
 	}
 	
 

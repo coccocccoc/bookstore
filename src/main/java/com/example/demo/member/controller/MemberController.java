@@ -11,7 +11,6 @@ import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.service.MemberService;
 
 @Controller
-@RequestMapping("/bookstore")
 public class MemberController {
 	
 	@Autowired
@@ -27,9 +26,9 @@ public class MemberController {
     }
 
     @PostMapping("/sign-up")
-    public String signUp(@ModelAttribute MemberDTO dto) {
-        memberService.register(dto);
-        return "redirect:/login";
+    public String register(@ModelAttribute MemberDTO memberDTO) {
+        memberService.register(memberDTO);
+        return "redirect:/login?signupSuccess=true";
     }
 
     @GetMapping("/login")

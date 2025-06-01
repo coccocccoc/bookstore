@@ -20,6 +20,9 @@ public interface CartService {
 	// 장바구니 항목 삭제
 	void deleteCart(int cartNo);
 	
+	// memberNo로 장바구니 조회
+	List<CartDTO> getCartListByMember(int memberNo);
+	
 	// DTO -> Entity
 	default Cart toCartEntity(CartDTO dto) {
 		Cart cart = Cart.builder()

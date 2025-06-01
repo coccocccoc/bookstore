@@ -2,6 +2,8 @@ package com.example.demo.cart.controller;
 
 import java.util.List;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.cart.dto.CartDTO;
 import com.example.demo.cart.service.CartService;
+import com.example.demo.member.entity.Member;
+import com.example.demo.member.repository.MemberRepository;
 
 @Controller
 @RequestMapping("/bookstore")
@@ -21,6 +25,9 @@ public class CartController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+    MemberRepository memberRepository;
 	
 	 @ModelAttribute("categoryList")
 	 public List<String> getCategoryList() {
@@ -38,6 +45,7 @@ public class CartController {
 	// 장바구니 화면 반환 (목록 조회, 총 합계 계산, 총 수량 계산)
 	@GetMapping("/book-cart")
 	public String cart(Model model) {
+		
 		List<CartDTO> list = cartService.getCartList();
 		model.addAttribute("cartList", list);
 		
@@ -56,22 +64,22 @@ public class CartController {
 		}
 	    model.addAttribute("totalQuantity", totalQuantity);
 
-	    return "book-cart";
+	    return "/bookstore/book-cart";
 	}
 		
 	
 	// 수량 수정처리
-	@PostMapping("/book-cart/update")
+	@PostMapping("/update")
 	public String updateQuantity(@RequestParam("cartNo")int cartNo,
 								 @RequestParam("quantity") int quantity) {
 		cartService.updateQuantity(cartNo, quantity);
-		return "redirect:/book-cart";
+		return "redirect:/bookstore/book-cart";
 		
 	}
 	
 	
 	// 항목 삭제처리
-	@PostMapping("/bookstore/book-cart/delete")
+	@PostMapping("/book-cart/delete")
 	public String deleteCart(@RequestParam("cartNo")int cartNo) {
 		cartService.deleteCart(cartNo);
 	    return "redirect:/bookstore/book-cart";

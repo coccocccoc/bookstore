@@ -30,7 +30,7 @@ public class Member {
 	int memberNo; // 회원 번호
 	
 	@Column(length = 20, nullable = false)
-	String id; // 아이디
+	String username; // 아이디
 	
 	@Column(length = 255, nullable = false)
 	String password; // 비밀번호
@@ -42,7 +42,7 @@ public class Member {
 	String address; // 주소
 		
 	@Column(length = 20)
-	String phoneNumber; // 전화번호
+	String phoneNumber; // 전화번호	
 	
 	@Column(length = 20, nullable = false)
 	String role; // 권한(역할)
