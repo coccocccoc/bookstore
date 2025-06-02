@@ -18,10 +18,10 @@
         <button class="search-btn">검색</button>
       </div>
       <div class="nav-group">
-        <a href="/bookstore/book-add" sec:authorize="hasRole('ADMIN')">
+        <a href="/bookstore/book-add">
           <img src="/img/도서추가.png" alt="도서 추가">
         </a>
-        <a href="/bookstore/book-cart" sec:authorize="hasAnyRole('USER','ADMIN')">
+        <a href="/bookstore/book-cart">
           <img src="/img/장바구니.png" alt="장바구니">
         </a>
         <a href="/bookstore/my">

@@ -27,7 +27,7 @@ public class MemberRepositoryTest {
 								.username("abc123")
 								.password("1234")
 								.name("둘리")
-								.address("인천광역시 부평구 갈산동")
+								.address("대전시 유성구 상대복용로29번길 51 대전아이파크시티2단지 205동 601호")
 								.phoneNumber("010-1111-2222")
 								.role("user")
 								.build();
@@ -44,7 +44,7 @@ public class MemberRepositoryTest {
 		repository.save(member2);
 		
 		Member member3 = Member.builder()
-								.username("aa0000")
+								.username("yuri123")
 								.password("1234")
 								.name("유리")
 								.address("대구광역시 수성구")

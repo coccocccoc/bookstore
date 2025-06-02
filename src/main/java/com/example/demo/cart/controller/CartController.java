@@ -69,7 +69,7 @@ public class CartController {
 		
 	
 	// 수량 수정처리
-	@PostMapping("/update")
+	@PostMapping("/book-cart/update")
 	public String updateQuantity(@RequestParam("cartNo")int cartNo,
 								 @RequestParam("quantity") int quantity) {
 		cartService.updateQuantity(cartNo, quantity);
